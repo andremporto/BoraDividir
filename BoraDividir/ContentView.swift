@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    let background =  Color(.blue)
+//    let background =  Color(.blue)
     
     @State private var checkAmount = 0.0
     @State private var numberOfPeople = 2
@@ -32,7 +32,9 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                background
+                LinearGradient(gradient: Gradient(colors: [Color.yellow, Color.red]),
+                               startPoint: .topLeading,
+                               endPoint: .bottom)
                     .ignoresSafeArea()
                 
                 VStack {
