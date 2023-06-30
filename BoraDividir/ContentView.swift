@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    let background =  Color(.blue)
+    
     @State private var checkAmount = 0.0
     @State private var numberOfPeople = 2
     @State private var tipPercentage = 20
@@ -28,50 +31,57 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            Form {
+            ZStack {
+                background
+                    .ignoresSafeArea()
                 
-                Section {
-                    TextField("Quantidade", value: $checkAmount, format:
-                            .currency(code: Locale.current.currency?.identifier ?? "BRL"))
+                VStack {
+                    Form {
+                        Section {
+                            TextField("Quantidade", value: $checkAmount, format:
+                                    .currency(code: Locale.current.currency?.identifier ?? "BRL"))
                             .keyboardType(.decimalPad)
                             .focused($amountIsFocused)
-                    
-                    Picker("Quantidade de pessoas:", selection: $numberOfPeople) {
-                        ForEach(2..<100) {
-                            Text("\($0) pessoas")
+                            
+                            Picker("Quantidade de pessoas:", selection: $numberOfPeople) {
+                                ForEach(2..<100) {
+                                    Text("\($0) pessoas")
+                                }
+                            }
+                        } header: {
+                            Text("Valor e quantidade de pessoas")
+                        }
+                        
+                        Section {
+                            Picker("Porcentagem da Gorjeta", selection: $tipPercentage) {
+                                ForEach(tipPercentages, id: \.self) {
+                                    Text($0, format: .percent)
+                                }
+                            }
+                            .pickerStyle(.segmented)
+                        } header: {
+                            Text("Quanto você quer dar de gorjeta?")
+                        }
+                        
+                        Section {
+                            Text(totalPerPerson, format:
+                                    .currency(code: Locale.current.currency?.identifier ?? "BRL"))
+                        } header: {
+                            Text("Valor por pessoa")
                         }
                     }
-                } header: {
-                    Text("Valor e quantidade de pessoas")
-                }
-                
-                Section {
-                    Picker("Porcentagem da Gorjeta", selection: $tipPercentage) {
-                        ForEach(tipPercentages, id: \.self) {
-                            Text($0, format: .percent)
-                        }
-                    }
-                    .pickerStyle(.segmented)
-                } header: {
-                    Text("Quanto você quer dar de gorjeta?")
-                }
-                
-                Section {
-                    Text(totalPerPerson, format:
-                            .currency(code: Locale.current.currency?.identifier ?? "BRL"))
-                } header: {
-                    Text("Valor por pessoa")
-                }
-            } 
-            
-            .navigationTitle("BoraDividir")
-            //Keyboard buttom
-            .toolbar {
-                ToolbarItemGroup(placement: .keyboard) {
-                    Spacer()
+                    .scrollContentBackground(.hidden)
                     
-                    Button("Fechar") {
-                        amountIsFocused = false
+                    .navigationTitle("BoraDividir")
+                    //Keyboard buttom
+                    .toolbar {
+                        ToolbarItemGroup(placement: .keyboard) {
+                            Spacer()
+                            
+                            Button("Fechar") {
+                                amountIsFocused = false
+                            }
+                        }
                     }
                 }
             }
