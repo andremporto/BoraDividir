@@ -1,6 +1,6 @@
 # BoraDividir
 
-## An App to help us to split the bills.
+This app is the perfect companion for hassle-free bill splitting! 
 
 #
 
