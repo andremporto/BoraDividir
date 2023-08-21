@@ -1,8 +1,4 @@
-# BoraDividir
-
-This app is the perfect companion for hassle-free bill splitting! 
-
-#
+![BoraDividir](https://socialify.git.ci/andremporto/BoraDividir/image?description=1&descriptionEditable=The%20perfect%20companion%20for%20hassle-free%20bill%20splitting!&forks=1&issues=1&language=1&name=1&owner=1&pattern=Signal&pulls=1&stargazers=1&theme=Auto)
 
 ## Our Goal
 
